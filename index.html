@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Generador de Presupuestos</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Generador de Presupuestos- Computación</h1>
+
+    <div class="cliente-row">
+      <label for="clientName">Nombre y Apellido del Cliente</label>
+      <input id="clientName" type="text" placeholder="Ej: Juan Pérez" />
+    </div>
+
+    <!-- Área que se imprimirá / exportará -->
+    <div id="quoteArea" class="quote-area">
+      <div class="quote-head">
+        <div>
+          <strong>Fecha:</strong> <span id="quoteDate"></span>
+        </div>
+        <div>
+          <strong>Cliente:</strong> <span id="clientDisplay">-</span>
+        </div>
+      </div>
+
+      <table id="itemsTable" class="items-table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio unitario</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- 5 filas fijas (máximo 5 productos según tu requisito) -->
+          <tr>
+            <td>
+              <select id="product1" class="productSelect">
+                <option value="">-- Seleccionar --</option>
+                <option>PLC</option>
+                <option>PC de Escritorio</option>
+                <option>Switch 24 puertos</option>
+                <option>Sensor Infra Rojo</option>
+                <option>Diodos</option>
+                <option>Resistencia 100Kohm</option>
+              </select>
+            </td>
+            <td><input id="qty1" class="qty" type="number" min="0" step="1" placeholder="0" /></td>
+            <td><input id="price1" class="price" type="number" min="0" step="0.01" placeholder="0.00" /></td>
+            <td><span id="lineTotal1" class="lineTotal">0.00</span></td>
+          </tr>
+
+          <tr>
+            <td>
+              <select id="product2" class="productSelect">
+                <option value="">-- Seleccionar --</option>
+                <option>PLC</option>
+                <option>PC de Escritorio</option>
+                <option>Switch 24 puertos</option>
+                <option>Sensor Infra Rojo</option>
+                <option>Diodos</option>
+                <option>Resistencia 100Kohm</option>
+              </select>
+            </td>
+            <td><input id="qty2" class="qty" type="number" min="0" step="1" placeholder="0" /></td>
+            <td><input id="price2" class="price" type="number" min="0" step="0.01" placeholder="0.00" /></td>
+            <td><span id="lineTotal2" class="lineTotal">0.00</span></td>
+          </tr>
+
+          <tr>
+            <td>
+              <select id="product3" class="productSelect">
+                <option value="">-- Seleccionar --</option>
+                <option>PLC</option>
+                <option>PC de Escritorio</option>
+                <option>Switch 24 puertos</option>
+                <option>Sensor Infra Rojo</option>
+                <option>Diodos</option>
+                <option>Resistencia 100Kohm</option>
+              </select>
+            </td>
+            <td><input id="qty3" class="qty" type="number" min="0" step="1" placeholder="0" /></td>
+            <td><input id="price3" class="price" type="number" min="0" step="0.01" placeholder="0.00" /></td>
+            <td><span id="lineTotal3" class="lineTotal">0.00</span></td>
+          </tr>
+
+          <tr>
+            <td>
+              <select id="product4" class="productSelect">
+                <option value="">-- Seleccionar --</option>
+                <option>PLC</option>
+                <option>PC de Escritorio</option>
+                <option>Switch 24 puertos</option>
+                <option>Sensor Infra Rojo</option>
+                <option>Diodos</option>
+                <option>Resistencia 100Kohm</option>
+              </select>
+            </td>
+            <td><input id="qty4" class="qty" type="number" min="0" step="1" placeholder="0" /></td>
+            <td><input id="price4" class="price" type="number" min="0" step="0.01" placeholder="0.00" /></td>
+            <td><span id="lineTotal4" class="lineTotal">0.00</span></td>
+          </tr>
+
+          <tr>
+            <td>
+              <select id="product5" class="productSelect">
+                <option value="">-- Seleccionar --</option>
+                <option>PLC</option>
+                <option>PC de Escritorio</option>
+                <option>Switch 24 puertos</option>
+                <option>Sensor Infra Rojo</option>
+                <option>Diodos</option>
+                <option>Resistencia 100Kohm</option>
+              </select>
+            </td>
+            <td><input id="qty5" class="qty" type="number" min="0" step="1" placeholder="0" /></td>
+            <td><input id="price5" class="price" type="number" min="0" step="0.01" placeholder="0.00" /></td>
+            <td><span id="lineTotal5" class="lineTotal">0.00</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="summary">
+        <div>Subtotal: <strong id="subtotal">0.00</strong></div>
+        <div>IVA (21%): <strong id="vat">0.00</strong></div>
+        <div>Total con IVA: <strong id="total">0.00</strong></div>
+        <hr />
+        <div>Ahora 12 (sin interés) — Total: <strong id="ahora12_total">0.00</strong> / Cuota: <strong id="ahora12_cuota">0.00</strong></div>
+        <div>Ahora 18 (75% interés) — Total: <strong id="ahora18_total">0.00</strong> / Cuota: <strong id="ahora18_cuota">0.00</strong></div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button id="calculateBtn">Calcular</button>
+      <button id="printBtn">Imprimir Presupuesto</button>
+      <button id="pdfBtn">Exportar a PDF</button>
+      <button id="resetBtn">Borrar</button>
+    </div>
+
+    <p class="note">Nota: Para "Exportar a PDF" se abrirá el diálogo de impresión: elegir "Guardar como PDF". IVA por defecto 21% (configurable en el archivo js).</p>
+  </div>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>
